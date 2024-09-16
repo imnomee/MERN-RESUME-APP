@@ -2,6 +2,11 @@
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+import connectDB from './utils/db.js';
 
 const app = express();
 
@@ -25,7 +30,8 @@ app.get('/home', (req, res) => {
 });
 
 //Listener
-const PORT = 7860;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
+    connectDB();
     console.log('Server running at port:', PORT);
 });

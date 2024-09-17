@@ -3,9 +3,10 @@ import mongoose from 'mongoose'; // Import Mongoose for MongoDB interaction
 // Define the Company schema
 const companySchema = new mongoose.Schema(
     {
-        name: {
+        companyName: {
             type: String, // Company name
             required: true, // Name is a required field
+            unique: true,
         },
         description: {
             type: String, // Brief description of the company

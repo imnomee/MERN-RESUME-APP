@@ -142,8 +142,7 @@ export const logout = async (req, res) => {
 export const updateProfile = async (req, res) => {
     try {
         // Destructure fields from the request body
-        const { firstName, lastName, phoneNumber, bio, skills, email } =
-            req.body;
+        const { firstName, lastName, phoneNumber, profile, email } = req.body;
 
         // File upload (handled by a service like Cloudinary)
         const file = req.file;
@@ -152,19 +151,17 @@ export const updateProfile = async (req, res) => {
         if (
             !firstName ||
             !lastName ||
-            !phoneNumber ||
             !email ||
-            !bio ||
-            !skills
+            !profile.bio ||
+            !profile.skills
         ) {
             return res.status(400).json({
                 message: 'UserUpdate: some fields are missing',
                 success: false,
             });
         }
-
+        console.log(profile.skills.join(''));
         // Split skills string into an array
-        const skillsArray = skills.split(',');
 
         const userId = req.id; // Retrieve user ID from authentication middleware
 
@@ -178,12 +175,12 @@ export const updateProfile = async (req, res) => {
         }
 
         // Update user data
-        user.firstName = firstName;
-        user.lastName = lastName;
-        user.phoneNumber = phoneNumber;
-        user.email = email;
-        user.bio = bio;
-        user.skills = skillsArray;
+        if (firstName) user.firstName = firstName;
+        if (lastName) user.lastName = lastName;
+        if (phoneNumber) user.phoneNumber = phoneNumber;
+        if (email) user.email = email;
+        if (profile.bio) user.profile.bio = profile.bio;
+        if (profile.skills) user.profile.skills = profile.skills;
 
         // Save the updated user data
         await user.save();

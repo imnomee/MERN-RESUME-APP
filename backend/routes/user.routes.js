@@ -1,6 +1,7 @@
 import express from 'express'; // Import Express framework
 import {
     login,
+    logout,
     register,
     updateProfile,
 } from '../controllers/user.controller.js'; // Import user-related controllers
@@ -21,5 +22,8 @@ router.route('/profile/update').post(isAuthenticated, updateProfile);
 // POST request to update the user profile.
 // The `isAuthenticated` middleware ensures the user is logged in before allowing profile updates.
 // The `updateProfile` controller handles the logic of updating the user's profile.
+
+// Route for logging the user out
+router.route('/logout').get(logout);
 
 export default router; // Export the router for use in other parts of the application

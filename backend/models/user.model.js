@@ -27,7 +27,6 @@ const userSchema = new mongoose.Schema(
             type: String,
             enum: ['seeker', 'recruiter'],
             required: true,
-            default: 'seeker',
         },
         profile: {
             bio: { type: String },
@@ -42,7 +41,7 @@ const userSchema = new mongoose.Schema(
         },
     },
     {
-        timestampstrue,
+        timestamps: true,
     }
 );
 

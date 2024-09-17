@@ -1,4 +1,4 @@
-import { User } from '../models/user.model';
+import { User } from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
@@ -6,7 +6,7 @@ export const register = async (req, res) => {
     try {
         const { firstName, lastName, email, phoneNumber, password, role } =
             req.body;
-        if (!firstName || !lastName || !email || !phoneNumber || !password) {
+        if (!firstName || !lastName || !email) {
             return res.status(400).json({
                 message: 'Register: all fields required',
                 success: false,

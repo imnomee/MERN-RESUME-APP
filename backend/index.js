@@ -5,6 +5,7 @@ import cors from 'cors'; // Middleware for Cross-Origin Resource Sharing (CORS)
 import dotenv from 'dotenv'; // Load environment variables from .env file
 import userRoute from './routes/user.routes.js'; // Import user routes
 import companyRoute from './routes/company.routes.js';
+import jobRoute from './routes/job.routes.js';
 // Import company routes
 
 dotenv.config(); // Load environment variables
@@ -32,6 +33,7 @@ app.use(cors(corsOptions)); // Apply CORS middleware with specified options
 // Register user-related routes under the `/api/v1/user` endpoint
 app.use('/api/v1/user', userRoute);
 app.use('/api/v1/company', companyRoute);
+app.use('/api/v1/job', jobRoute);
 
 // Listener: Start the server on the specified port
 const PORT = process.env.PORT || 5000; // Default port set to 5000 if not specified in the .env

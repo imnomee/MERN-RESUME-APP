@@ -3,23 +3,27 @@ import mongoose from 'mongoose'; // Import Mongoose for MongoDB interaction
 // Define the Job schema
 const jobSchema = new mongoose.Schema(
     {
-        title: {
+        jobTitle: {
             type: String,
             required: true, // Title of the job, required field
         },
-        description: {
+        jobDescription: {
             type: String,
             required: true, // Description of the job, required field
         },
-        requirement: {
+        jobReq: {
             type: [{ type: String }], // List of job requirements as an array of strings
             required: true, // Required field
         },
-        salary: {
+        jobSalary: {
             type: Number,
             required: true, // Salary offered for the job, required field
         },
-        location: {
+        jobExp: {
+            type: Number,
+            required: true,
+        },
+        jobLocation: {
             type: String,
             required: true, // Job location, required field
         },
@@ -27,11 +31,11 @@ const jobSchema = new mongoose.Schema(
             type: String,
             required: true, // Type of job (e.g., full-time, part-time), required field
         },
-        position: {
+        jobPosition: {
             type: Number,
             required: true, // Number of positions available for this job, required field
         },
-        company: {
+        companyId: {
             type: mongoose.Schema.Types.ObjectId, // Reference to the Company model
             ref: 'Company', // Specifies the 'Company' model for the ObjectId reference
             required: true, // The job must be associated with a company, required field
